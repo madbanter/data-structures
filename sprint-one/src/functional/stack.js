@@ -12,14 +12,16 @@ var Stack = function() {
   };
 
   someInstance.pop = function() {
-    var popped = storage[itemCount];
-    delete storage[itemCount];
-    itemCount--;
-    return popped;
+    if (itemCount > 0) {
+      var popped = storage[itemCount];
+      delete storage[itemCount];
+      itemCount--;
+      return popped;
+    }
   };
 
   someInstance.size = function() {
-    return Math.max(itemCount, 0);
+    return itemCount;
   };
 
   return someInstance;
