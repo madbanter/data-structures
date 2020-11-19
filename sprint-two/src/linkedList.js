@@ -20,11 +20,23 @@ var LinkedList = function() {
       var oldHead = list.head;
       list.head = list.head.next;
       //return current head
-      return oldHead;
+      return oldHead.value;
     }
   };
 
   list.contains = function(target) {
+    //iterate through list starting at head
+    var cursor = list.head;
+    while (cursor) {
+      //check each node's value against target
+      if (cursor.value === target) {
+        //if node value is target, return true
+        return true;
+      }
+      cursor = cursor.next;
+    }
+    //if we reach end of list w/o finding target, return false
+    return false;
   };
 
   return list;
