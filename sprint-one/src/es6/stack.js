@@ -1,7 +1,24 @@
 class Stack {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
   constructor() {
+    this.itemCount = 0;
+    this.storage = {};
   }
 
+  push(item) {
+    this.itemCount++;
+    this.storage[this.itemCount] = item;
+  }
+
+  pop() {
+    if (this.itemCount > 0) {
+      let popped = this.storage[this.itemCount];
+      delete this.storage[this.itemCount];
+      this.itemCount--;
+      return popped;
+    }
+  }
+
+  size() {
+    return this.itemCount++;
+  }
 }
