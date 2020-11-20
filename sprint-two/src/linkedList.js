@@ -25,17 +25,13 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
-    //iterate through list starting at head
     var cursor = list.head;
     while (cursor) {
-      //check each node's value against target
       if (cursor.value === target) {
-        //if node value is target, return true
         return true;
       }
       cursor = cursor.next;
     }
-    //if we reach end of list w/o finding target, return false
     return false;
   };
 
@@ -53,5 +49,8 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * addToTail: O(1)
+ * removeHead: O(1)
+ * contains: O(n)
  */
 //add test to check for empty list
