@@ -2,14 +2,20 @@
 
 // Instantiate a new graph
 var Graph = function() {
+  this.nodes = [];
+  this.edges = {};
 };
 
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
+  this.nodes.push(node);
+  this.edges[node] = [];
 };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
 Graph.prototype.contains = function(node) {
+  //check if node is in this.nodes
+  return this.nodes.includes(node);
 };
 
 // Removes a node from the graph.
