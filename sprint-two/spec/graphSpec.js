@@ -36,6 +36,12 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 1)).to.equal(false);
   });
 
+  it('should not add an edge to a node not in the graph', function() {
+    graph.addNode(1);
+    graph.addEdge(1, 7);
+    expect(graph.hasEdge(1, 7)).to.equal(false);
+    expect(graph.contains(7)).to.equal(false);
+  });
   it('should remove edges between nodes', function() {
     graph.addNode(4);
     graph.addNode(5);
