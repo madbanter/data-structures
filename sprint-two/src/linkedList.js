@@ -19,7 +19,9 @@ var LinkedList = function() {
     if (list.tail) {
       var oldHead = list.head;
       list.head = list.head.next;
-      //return current head
+      if (list.head === null) {
+        list.tail = list.head;
+      }
       return oldHead.value;
     }
   };

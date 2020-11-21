@@ -23,12 +23,24 @@ describe('linkedList', function() {
     expect(linkedList.tail.value).to.equal(5);
   });
 
+  it('should designate a new head when new node is added to empty list', function() {
+    linkedList.addToTail(1);
+    expect(linkedList.head.value).to.equal(1);
+  });
+
   it('should remove the head from the list when removeHead is called', function() {
     linkedList.addToTail(4);
     linkedList.addToTail(5);
     expect(linkedList.head.value).to.equal(4);
     linkedList.removeHead();
     expect(linkedList.head.value).to.equal(5);
+  });
+
+  it('should reassign head and tail to null when only node is removed', function() {
+    linkedList.addToTail(1);
+    linkedList.removeHead();
+    expect(linkedList.head).to.equal(null);
+    // expect(linkedList.tail).to.equal(null);
   });
 
   it('should return the value of the former head when removeHead is called', function() {
