@@ -55,7 +55,29 @@ describe('hashTable', function() {
   });
 
   // (Advanced! Remove the extra "x" when you want the following tests to run)
-  xit ('should double in size when needed', function() {
+
+  it ('should increase item count when item is inserted', function() {
+    hashTable.insert('cat', 'fluffy');
+    expect(hashTable._itemCount).to.equal(1);
+  });
+
+  it ('should decrease item count when item is removed', function() {
+    hashTable.insert('cat', 'fluffy');
+    hashTable.remove('cat');
+    expect(hashTable._itemCount).to.equal(0);
+  });
+
+  it ('should not decrease item count when hashTable is empty', function() {
+    hashTable.remove('cat');
+    expect(hashTable._itemCount).to.equal(0);
+  });
+
+  it ('should resize hashtable to given size', function() {
+    hashTable = hashTable.resize(16);
+    expect(hashTable._limit).to.equal(16);
+  });
+
+  it ('should double in size when needed', function() {
     _.each(people, function(person) {
       var firstName = person[0];
       var lastName = person[1];
@@ -65,7 +87,7 @@ describe('hashTable', function() {
     expect(hashTable._limit).to.equal(16);
   });
 
-  xit ('should halve in size when needed', function() {
+  it ('should halve in size when needed', function() {
     _.each(people, function(person) {
       var firstName = person[0];
       var lastName = person[1];
