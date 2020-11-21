@@ -1,8 +1,10 @@
 
 
-var HashTable = function() {
-  this._limit = 8;
+var HashTable = function(limit) {
+  this._defaultLimit = 8;
+  this._limit = limit || this._defaultLimit;
   this._storage = LimitedArray(this._limit);
+  this._itemCount = 0;
 };
 
 HashTable.prototype.insert = function(k, v) {
@@ -21,6 +23,11 @@ HashTable.prototype.insert = function(k, v) {
   }
   if (!found) {
     array.push([k, v]);
+    this._itemCount++;
+    if (this._itemCount / this._limit >= 0.75) {
+      this._storage = this.resize(this._limit * 2)._storage;
+      this._limit *= 2;
+    }
   }
 };
 
@@ -43,18 +50,33 @@ HashTable.prototype.remove = function(k) {
   for (let i = 0; i < array.length; i++) {
     if (array[i][0] === k) {
       array.splice(i, 1);
+      this._itemCount--;
+      if (this._limit / 2 >= 8 && this._itemCount / this._limit <= 0.25 ) {
+        this._storage = this.resize(this._limit / 2)._storage;
+        this._limit /= 2;
+      }
       break;
     }
   }
 };
 
-
+HashTable.prototype.resize = function(newLimit) {
+  var newHashTable = new HashTable(newLimit);
+  this._storage.each(function(bucket) {
+    if (bucket) {
+      bucket.forEach(function(item) {
+        newHashTable.insert(item[0], item[1]);
+      });
+    }
+  });
+  return newHashTable;
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?
- * insert: O(n) *until we implement resizing*
- * retrieve: O(n) *until we implement resizing*
- * remove: O(n) *until we implement resizing*
+ * insert: O(n) or O(1) with resizing
+ * retrieve: O(n) or O(1) with resizing
+ * remove: O(n) or O(1) with resizing
  */
 
 

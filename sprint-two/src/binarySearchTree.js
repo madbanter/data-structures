@@ -3,28 +3,36 @@ var BinarySearchTree = function(value) {
   newBST.value = value;
   newBST.left = null;
   newBST.right = null;
+  newBST.maxDepth = 1;
   return newBST;
 };
 
 var bstMethods = {};
 
 bstMethods.insert = function(value) {
+  let depth = 1;
   if (value === this.value) {
     return null;
   }
   if (value < this.value) {
     if (this.left === null) {
       this.left = BinarySearchTree(value);
+      depth++;
     } else {
-      this.left.insert(value);
+      depth += this.left.insert(value);
     }
   } else {
     if (this.right === null) {
       this.right = BinarySearchTree(value);
+      depth++;
     } else {
-      this.right.insert(value);
+      depth += this.right.insert(value);
     }
   }
+  if (depth > this.maxDepth) {
+    this.maxDepth = depth;
+  }
+  return depth;
 };
 
 bstMethods.contains = function(value) {
@@ -56,10 +64,13 @@ bstMethods.depthFirstLog = function(callback) {
   }
 };
 
+//minDepth function
+
+//resize function
 
 /*
  * Complexity: What is the time complexity of the above functions?
  * insert: O(log n) if balanced, O(n) otherwise
  * contains: O(log n) if balanced, O(n) otherwise
- * depthFirstLog: O(log n) if balanced, O(n) otherwise
+ * depthFirstLog: O(n)
  */
