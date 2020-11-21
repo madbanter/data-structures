@@ -68,6 +68,5 @@ Graph.prototype.forEachNode = function(cb) {
  * removeEdge: O(n)
  * forEachNode: O(n)
  */
-//shouldnt do anything if we call addEdge on nodes not in graph
-//test for removeNode called on node which does not exist in graph
+
 

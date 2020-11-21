@@ -35,6 +35,13 @@ describe('hashTable', function() {
     expect(hashTable.retrieve('Steven')).to.equal(undefined);
   });
 
+  it('should not throw an error when removing from empty storage index', function() {
+    var testFunc = function() {
+      hashTable.remove('cat');
+    };
+    expect(testFunc).not.to.throw();
+  });
+
   it('should handle hash function collisions', function() {
     var v1 = 'val1';
     var v2 = 'val2';

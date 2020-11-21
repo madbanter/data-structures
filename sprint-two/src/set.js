@@ -7,9 +7,7 @@ var Set = function() {
 var setPrototype = {};
 
 setPrototype.add = function(item) {
-  // Check if storage[item] is undefined
   if (!(this.contains(item))) {
-    // if so, storage[item] = item;
     this._storage[item] = item;
   }
 };
@@ -28,5 +26,4 @@ setPrototype.remove = function(item) {
  * .contains(): O(1)
  * .remove(): O(1)
  */
-//test what should happen when we call remove on empty set
 
