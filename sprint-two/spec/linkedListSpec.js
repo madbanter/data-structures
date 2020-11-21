@@ -40,7 +40,7 @@ describe('linkedList', function() {
     linkedList.addToTail(1);
     linkedList.removeHead();
     expect(linkedList.head).to.equal(null);
-    // expect(linkedList.tail).to.equal(null);
+    expect(linkedList.tail).to.equal(null);
   });
 
   it('should return the value of the former head when removeHead is called', function() {
