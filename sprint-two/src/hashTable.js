@@ -1,8 +1,10 @@
 
 
-var HashTable = function() {
-  this._limit = 8;
+var HashTable = function(limit) {
+  this._defaultLimit = 8;
+  this._limit = limit || this._defaultLimit;
   this._storage = LimitedArray(this._limit);
+  this._itemCount = 0;
 };
 
 HashTable.prototype.insert = function(k, v) {
@@ -21,6 +23,7 @@ HashTable.prototype.insert = function(k, v) {
   }
   if (!found) {
     array.push([k, v]);
+    this._itemCount++;
   }
 };
 
@@ -43,6 +46,7 @@ HashTable.prototype.remove = function(k) {
   for (let i = 0; i < array.length; i++) {
     if (array[i][0] === k) {
       array.splice(i, 1);
+      this._itemCount--;
       break;
     }
   }
