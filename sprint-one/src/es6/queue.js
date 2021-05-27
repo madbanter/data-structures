@@ -17,12 +17,9 @@ class Queue {
       let dequeued = this.storage[this.oldestKey];
       delete this.storage[this.oldestKey];
       this.oldestKey++;
-      if (this.itemCount > 0) {
-        this.itemCount--;
-      }
+      this.itemCount--;
       return dequeued;
     }
-
   }
 
   size() {
